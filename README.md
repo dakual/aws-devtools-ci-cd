@@ -19,3 +19,11 @@ Create a repository (AWS CLI)
 aws codecommit create-repository --repository-name devtools-demo --repository-description "AWS Dev Tolls CI/CD Demo" --tags Env=dev
 ```
 
+To delete the CodeCommit repository (AWS CLI)
+```sh
+aws codecommit delete-repository --repository-name devtools-demo
+```
+
+
+dockebuild -t demo-app .
+docker run -it --rm --name demo-app -p 8080:8080 demo-app:latest
