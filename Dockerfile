@@ -7,6 +7,8 @@ ENV PATH=/venv/bin:$PATH
 
 WORKDIR /app
 COPY app/requirements.txt .
+
+RUN pip install --no-cache-dir requests
 RUN pip install --no-cache-dir -r requirements.txt
 
 FROM python:3.8-alpine
@@ -21,5 +23,7 @@ ENV PATH=/venv/bin:$PATH
 
 WORKDIR /app
 COPY app ./
+
+HEALTHCHECK --interval=12s --timeout=12s CMD python -c "import requests; requests.get('http://localhost:8080', timeout=2)"
 
 CMD [ "python3", "-m" , "flask", "run"]

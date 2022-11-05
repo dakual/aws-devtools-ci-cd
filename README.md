@@ -24,6 +24,8 @@ To delete the CodeCommit repository (AWS CLI)
 aws codecommit delete-repository --repository-name devtools-demo
 ```
 
-
-dockebuild -t demo-app .
+Demo Application
+```sh
+dockebuild -t demo-app --no-cache .
 docker run -it --rm --name demo-app -p 8080:8080 demo-app:latest
+```
