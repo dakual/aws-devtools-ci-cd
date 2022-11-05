@@ -1,12 +1,12 @@
 version: 0.2
 env:
   variables:
-     IMAGE_NAME: "demo-app"
+    IMAGE_NAME: "demo-app"
 phases:
   pre_build:
     commands:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-6)
-      - REPO="$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com"
+      - REPO="632296647497.dkr.ecr.eu-central-1.amazonaws.com"
       - IMAGE_URI="$REPO/$IMAGE_NAME:$IMAGE_TAG"
       - echo Image $IMAGE_URI
       - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) $REPO
