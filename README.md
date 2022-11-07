@@ -26,6 +26,6 @@ aws codecommit delete-repository --repository-name devtools-demo
 
 Demo Application
 ```sh
-dockebuild -t demo-app --no-cache .
+docker build -t demo-app --no-cache .
 docker run -it --rm --name demo-app -p 8080:8080 demo-app:latest
 ```
