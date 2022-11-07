@@ -1,0 +1,48 @@
+{
+    "applicationName": "demo-app",
+    "autoRollbackConfiguration": {
+       "enabled": true,
+       "events": [ "DEPLOYMENT_FAILURE" ]
+    },
+    "blueGreenDeploymentConfiguration": {
+       "deploymentReadyOption": {
+          "actionOnTimeout": "CONTINUE_DEPLOYMENT",
+          "waitTimeInMinutes": 0
+       },
+       "terminateBlueInstancesOnDeploymentSuccess": {
+          "action": "TERMINATE",
+          "terminationWaitTimeInMinutes": 5
+       }
+    },
+    "deploymentGroupName": "demo-app-dg",
+    "deploymentStyle": {
+       "deploymentOption": "WITH_TRAFFIC_CONTROL",
+       "deploymentType": "BLUE_GREEN"
+    },
+    "loadBalancerInfo": {
+       "targetGroupPairInfoList": [
+         {
+           "targetGroups": [
+              {
+                  "name": "demo-app-tg1"
+              },
+              {
+                  "name": "demo-app-tg2"
+              }
+           ],
+           "prodTrafficRoute": {
+               "listenerArns": [
+                   "arn:aws:elasticloadbalancing:eu-central-1:632296647497:listener/app/demo-app-alb/4180c893515cdc52/de68fb9f0210e1c5"
+               ]
+           }
+         }
+       ]
+    },
+    "serviceRoleArn": "arn:aws:iam::632296647497:role/demo-app-ecsCodeDeployRole",
+    "ecsServices": [
+        {
+            "serviceName": "demo-app-service",
+            "clusterName": "demo-app-cluster"
+        }
+    ]
+ }

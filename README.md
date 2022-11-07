@@ -29,3 +29,25 @@ Demo Application
 docker build -t demo-app --no-cache .
 docker run -it --rm --name demo-app -p 8080:8080 demo-app:latest
 ```
+
+Create S3
+```sh
+aws s3 mb s3://632296647497-demo-app-bucket
+aws s3 cp ./appspec.yml s3://632296647497-demo-app-bucket/appspec.yml
+```
+
+Create Deployment
+```sh
+aws deploy create-application \
+     --application-name demo-app \
+     --compute-platform ECS \
+     --region eu-central-1
+
+aws deploy create-deployment-group \
+     --cli-input-json file://demo-app-deployment-group.json \
+     --region eu-central-1
+
+aws deploy create-deployment \
+     --cli-input-json file://create-deployment.json \
+     --region eu-central-1
+```

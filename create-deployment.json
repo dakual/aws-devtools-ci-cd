@@ -1,0 +1,12 @@
+{
+    "applicationName": "demo-app",
+    "deploymentGroupName": "demo-app-dg",
+    "revision": {
+        "revisionType": "S3",
+        "s3Location": {
+            "bucket": "632296647497-demo-app-bucket",
+            "key": "appspec.yml",
+            "bundleType": "YAML"
+        }
+    }
+}
