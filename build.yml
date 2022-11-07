@@ -8,15 +8,15 @@ phases:
       - IMAGE_TAG=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-6)
       - REPO="632296647497.dkr.ecr.eu-central-1.amazonaws.com"
       - IMAGE_URI="$REPO/$IMAGE_NAME"
-      - echo Image "$IMAGE_URI:IMAGE_TAG"
+      - echo Image "$IMAGE_URI:$IMAGE_TAG"
       - docker login -u AWS -p $(aws ecr get-login-password --region $AWS_DEFAULT_REGION) $REPO
   build:
     commands:
       - docker build -t $IMAGE_URI .
   post_build:
     commands:
-      - docker push "$IMAGE_URI:IMAGE_TAG"
+      - docker push "$IMAGE_URI:$IMAGE_TAG"
       - docker push "$IMAGE_URI:latest"
-      - printf '[{"name":"%s","imageUri":"%s"}]' "$IMAGE_NAME" "$IMAGE_URI:IMAGE_TAG" > images.json
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$IMAGE_NAME" "$IMAGE_URI:$IMAGE_TAG" > images.json
 artifacts:
   files: images.json
