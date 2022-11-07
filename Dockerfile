@@ -16,7 +16,7 @@ FROM python:3.8-alpine
 ENV FLASK_ENV=production
 ENV FLASK_APP=run.py
 ENV FLASK_RUN_HOST=0.0.0.0
-ENV FLASK_RUN_PORT=8080
+ENV FLASK_RUN_PORT=80
 
 COPY --from=build /venv /venv
 ENV PATH=/venv/bin:$PATH

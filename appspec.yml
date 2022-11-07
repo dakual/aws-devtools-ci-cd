@@ -1,0 +1,10 @@
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "arn:aws:ecs:eu-central-1:632296647497:task-definition/demo-app-task:5"
+        LoadBalancerInfo:
+          ContainerName: "demo-app"
+          ContainerPort: 80
+        PlatformVersion: "LATEST"
